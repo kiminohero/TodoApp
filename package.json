@@ -1,0 +1,21 @@
+{
+  "name": "todo",
+  "version": "1.0.0",
+  "description": "Todo App with crud implementation",
+  "main": "server.js",
+  "scripts": {
+    "client": "npm start --prefix client",
+    "client-install": "npm i --prefix client",
+    "server": "nodemon server.js",
+    "start": "node server.js",
+    "dev": "concurrently \" npm run server \" \" npm run client  \""
+  },
+  "author": "kiminohero",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "concurrently": "^4.1.0",
+    "cors": "^2.8.5",
+    "express": "^4.16.4"
+  }
+}
