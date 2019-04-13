@@ -1,28 +1,39 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import { BrowserRouter, Route } from "react-router-dom";
+import { connect } from "react-redux";
+import { fetchUser } from "./action";
+
+// COMPONENTS FOR RENDERING
+import Header from "./components/layout/Header";
+import Landing from "./components/layout/Landing";
+import TodoList from "./components/todos/TodoList";
+import AddTodo from "./components/todos/AddTodo";
 
 class App extends Component {
+  componentDidMount() {
+    this.props.fetchUser();
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <BrowserRouter>
+        <Header />
+        <div>
+          <Route exact path="/" component={Landing} />
+          <Route exact path="/todos" component={TodoList} />
+          <Route exact path="/todo/add" component={AddTodo} />
+          <Route
+            exact
+            path="/todo/update"
+            render={props => <AddTodo {...props} isAuthed={true} />}
+          />
+        </div>
+      </BrowserRouter>
     );
   }
 }
 
-export default App;
+export default connect(
+  null,
+  { fetchUser }
+)(App);
