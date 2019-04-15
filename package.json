@@ -4,10 +4,11 @@
   "description": "Todo App with crud implementation",
   "main": "server.js",
   "scripts": {
-    "server": "node index.js",
-    "test": "nodemon index.js",
-    "client": "cd client && npm start",
-    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "client": "npm start --prefix client",
+    "client-install": "npm i --prefix client",
+    "server": "nodemon server.js",
+    "start": "node server.js",
+    "dev": "concurrently \" npm run server \" \" npm run client  \"",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": "kiminohero",
