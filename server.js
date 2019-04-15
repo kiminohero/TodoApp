@@ -35,5 +35,5 @@ require("./routes/api/todos")(app);
 //     message: "working"
 //   });
 // });
-const port = 5000 || process.env.PORT;
+const port = process.env.PORT || 5000;
 app.listen(port);
