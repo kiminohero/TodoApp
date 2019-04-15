@@ -36,14 +36,5 @@ require("./routes/api/todos")(app);
 //   });
 // });
 
-// serve production assets like index.html, main.css file etc
-app.use(express.static("./client/build"));
-
-// If there is a incoming route request that our express app doesn't understand then just forward it to index.html to see if it gets resolved there --> Kicks the user to the client side application
-const path = require("path");
-app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-});
-
 const port = process.env.PORT || 5000;
 app.listen(port);
