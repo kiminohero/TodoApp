@@ -4,6 +4,8 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const passport = require("passport");
 const cookieSession = require("cookie-session");
+require("./models/User");
+require("./config/passport");
 require("dotenv").config();
 
 app.use(cors());
@@ -28,14 +30,12 @@ app.use(passport.session()); // used to persist user login
 require("./routes/api/auth")(app);
 require("./routes/api/todos")(app);
 
-const PORT = 5000;
-
 app.get("/", (req, res) => {
   res.json({
     message: "working"
   });
 });
-
+const PORT = 5000;
 app.listen(PORT, (req, res) => {
   console.log(`Express App running on ${PORT}`);
 });

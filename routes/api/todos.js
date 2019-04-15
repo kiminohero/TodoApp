@@ -19,6 +19,7 @@ module.exports = app => {
 
   app.post("/api/todo", requireLogin, async (req, res) => {
     const todo = new Todo({
+      title: req.body.title,
       description: req.body.description,
       created_at: Date.now(),
       user: req.user.id
@@ -37,20 +38,21 @@ module.exports = app => {
   });
 
   app.put("/api/todo/done/:id", requireLogin, async (req, res) => {
-    const { striked_out } = await Todo.findById(req.params.id);
-    Todo.findByIdAndUpdate(
-      req.params.id,
-      { striked_out: !striked_out },
-      { new: true }
-    ).then(todo => {
-      res.send(todo);
-    });
+    const { done } = await Todo.findById(req.params.id);
+    Todo.findByIdAndUpdate(req.params.id, { done: !done }, { new: true }).then(
+      todo => {
+        res.send(todo);
+      }
+    );
   });
 
   app.put("/api/todo/:id", requireLogin, (req, res) => {
     Todo.findByIdAndUpdate(
       req.params.id,
-      { description: req.body.description },
+      {
+        title: req.body.title,
+        description: req.body.description
+      },
       { new: true }
     ).then(todo => {
       res.send(todo);

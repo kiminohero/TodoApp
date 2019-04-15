@@ -3,6 +3,7 @@ import {
   ADD_TODO,
   DELETE_TODO,
   UPDATE_TODO,
+  DONE_TODO,
   FETCH_TODO,
   FETCH_USER
 } from "./types";
@@ -44,8 +45,16 @@ export const updateTodo = (todo, id, history) => async dispatch => {
   history.push("/todos");
 };
 
+export const doneTodo = (todo, id) => async dispatch => {
+  const res = await axios.put(`/api/todo/done/${id}`, todo);
+  dispatch({
+    type: DONE_TODO,
+    payload: res.data
+  });
+};
+
 export const deleteTodo = id => async dispatch => {
-  const res = await axios.delete(`/api/todo/${id}`);
+  await axios.delete(`/api/todo/${id}`);
   dispatch({
     type: DELETE_TODO,
     payload: id
