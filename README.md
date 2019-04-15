@@ -16,10 +16,12 @@ _Node.JS and npm must be installed. Download and install them from  [here](https
 
 Follow these steps to run this project in your local computer.
 
-$ https://github.com/kiminohero/TodoApp.git
+```
+$ git clone https://github.com/kiminohero/TodoApp.git
 $ cd TodoApp
 $ npm run client-install
 $ npm i
+```
 
 ### Command to run the project
 
