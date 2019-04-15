@@ -36,6 +36,4 @@ app.get("/", (req, res) => {
   });
 });
 const port = 5000 || process.env.PORT;
-app.listen(port, (req, res) => {
-  console.log(`Express App running on ${port}`);
-});
+app.listen(port);
