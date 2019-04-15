@@ -30,10 +30,10 @@ app.use(passport.session()); // used to persist user login
 require("./routes/api/auth")(app);
 require("./routes/api/todos")(app);
 
-app.get("/", (req, res) => {
-  res.json({
-    message: "working"
-  });
-});
+// app.get("/", (req, res) => {
+//   res.json({
+//     message: "working"
+//   });
+// });
 const port = 5000 || process.env.PORT;
 app.listen(port);
